@@ -1,0 +1,15 @@
+﻿@model IEnumerable<DataLayer.ShowGroupViewModel>
+
+<section class="sidebar-item">
+    <ul class="sidebar-list">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <li><a href="/Admin/PageGroups">مدیریت گروه ها</a></li>
+            <li><a href="/Admin/Pages">مدیریت صفحات</a></li>
+        }
+        @foreach (var item in Model)
+        {
+            <li><a href="/Group/@item.GroupID/@item.GroupTitle"> @item.GroupTitle <span>@item.PageCount</span></a></li>
+        }
+    </ul>
+</section>

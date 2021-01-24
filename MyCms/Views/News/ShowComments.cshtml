@@ -1,0 +1,14 @@
+﻿@model IEnumerable<DataLayer.PageComment>
+
+@foreach (var item in Model)
+{
+    <section class="comment-box">
+        <h3 class="comment-box-header">
+            @item.Name
+            <span class="comment-box-date"> @item.CreateDate.ToShamsi()</span>
+        </h3>
+        <comment>
+            @item.Comment 
+        </comment>
+    </section>
+}

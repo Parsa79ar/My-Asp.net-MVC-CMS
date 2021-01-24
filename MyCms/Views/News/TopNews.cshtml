@@ -1,0 +1,20 @@
+﻿@model IEnumerable<DataLayer.Page>
+
+<h2 class="title">پر بازدیدترین اخبار</h2>
+@foreach (var item in Model)
+{
+    <section class="popular-post">
+        <img class="popular-post-img" src="~/PageImages/@item.ImageName" alt="">
+        <section class="popular-post-title">
+            <h3>
+                <a href="/News/@item.PageID"><b>@item.Title</b></a>
+            </h3>
+            <ul class="info-bar">
+                <li class="">
+                    <span class="text-muted"> انتشار : @item.CreateDate.ToShamsi()</span>
+                </li>
+            </ul>
+        </section>
+        <section class="clear-fix"></section>
+    </section>
+}

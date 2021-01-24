@@ -1,0 +1,26 @@
+﻿@model IEnumerable<DataLayer.Page>
+
+<section class="main-crypto-mining-news">
+    <h2 class="title" id="LatesNewsTitle">جدیدترین اخبار</h2>
+    @foreach (var item in Model)
+    {
+        <section class="main-news-w-50">
+            <article>
+                <img class="main-news-img" src="~/PageImages/@item.ImageName" alt="">
+                <h3 class="article-title">
+                    <a href="/News/@item.PageID">@item.Title</a>
+                </h3>
+                <p>
+                    @item.ShortDescription
+                </p>
+                <ul class="info-bar">
+                    <li class="">
+                        <span class="text-muted">انتشار: @item.CreateDate.ToShamsi()</span>
+                    </li>
+                    <li><i class="fas fa-bolt text-yellow"></i> 30,190</li>
+                    <li><i class="fas fa-comments text-yellow"></i> 47</li>
+                </ul>
+            </article>
+        </section>
+    }
+</section>

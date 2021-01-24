@@ -1,0 +1,52 @@
+﻿@model DataLayer.Page
+
+@{
+    ViewBag.Title = "ShowNews";
+}
+
+<section class="main-news">
+    <h2 class="title">@Model.Title</h2>
+    <article>
+
+        <img class="main-news-img" src="~/PageImages/@Model.ImageName" alt="">
+        <h4 class="article-title">
+            <a href="#">@Model.ShortDescription</a>
+        </h4>
+
+        <p class="footer-p-margin-20">
+            @Html.Raw(Model.Text)
+        </p>
+
+        <ul class="info-bar">
+            <li class="">
+                <span class="text-muted">انتشار : @Model.CreateDate.ToShamsi()</span>
+            </li>
+            <li><i class="fas fa-bolt text-yellow"></i>  @Model.Visit</li>
+            <li><i class="fas fa-comments text-yellow"></i> @Model.PageComments.Count</li>
+        </ul>
+    </article>
+
+    <section id="commentList">
+        @Html.Action("ShowComments")
+    </section>
+
+    <form action="" method="post">
+        <input type="text" id="txtName" placeholder="نام و نام خانوادگی" >
+        <textarea class="comment" rows="4" id="txtComment" placeholder="دیدگاه متن...."></textarea>
+        <input class="submit" type="button" value="ثبت دیدگاه ارزشمند شما" onclick="addComment()">
+    </form>
+</section><!--end of main news-->
+
+<script>
+    function addComment() {
+        $.ajax({
+            url: "/News/AddComment/" + @Model.PageID,
+            type: "Get",
+            data: { name: $("#txtName").val(), comment: $("#txtComment").val() }
+        }).done(function (result) {
+            $("#commentList").html(result);
+            $("#txtName").val("");
+            $("#txtComment").val("");
+        });
+    }
+</script>

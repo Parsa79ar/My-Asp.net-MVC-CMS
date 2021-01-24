@@ -1,0 +1,126 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>وبسایت خبری</title>
+    <meta content="text/html; charset=iso-8859-2" http-equiv="Content-Type">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="/Content/css/style.css">
+    <script src="~/Content/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+<body>
+    <section class="app">
+        <header>
+            <nav class="header">
+                <img class="header-logo" src="/Content/images/logo-black.png" alt="">
+                <button class="header-menu-burger" onclick="showMenu()" type="button"><i class="fas fa-bars"></i></button>
+                <ul class="header-menu" id="menu">
+                    <li class="header-menu-item"><a class="header-menu-item-link" href="/">صفحه اصلی</a></li>
+                    <li class="header-menu-item">
+                        @Html.Action("ShowGroupsInMenu", "News")
+                    </li>
+                    <li class="header-menu-item"><a class="header-menu-item-link" href="/Archive">آرشیو خبرها</a></li>
+                    <li class="header-menu-item"><a class="header-menu-item-link" href="">درباره ما</a></li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="header-menu-item"><a class="header-menu-item-link" href=""> @User.Identity.Name خوش آمدید.  </a></li>
+                        <li class="header-menu-item"><a class="header-menu-item-link" href="/Account/SignOut"> خروج </a></li>
+                    }
+                    else
+                    {
+                        <li class="header-menu-item"><a class="header-menu-item-link" href="/Account/Login">ورود به سایت</a></li>
+                    }
+                </ul>
+                <section class="clear-fix"></section>
+            </nav><!--end of navbar-->
+        </header><!--end of header-->
+        <hr />
+        <section class="content">
+            
+            <section class="container">
+                <main class="main">
+                    <section class="main-news">
+                        @RenderBody()
+                        <section class="clear-fix"></section>
+                    </section>@*end of main crypto mining news*@
+                </main>@*end of main*@
+
+                <aside class="sidebar">
+                    @Html.Action("ShowGroups", "News")
+                    <section class="sidebar-item">
+                        <section class="popular-post">
+                            @Html.Action("TopNews", "News")
+                        </section>
+                    </section>
+                    <section class="sidebar-item">
+                        <h2 class="title">خبرنامه</h2>
+                        <p>
+                            با وارد کردن ایمیل خود در خبرنامه عضو شوید.....
+                        </p>
+                        <form class="subscribe-form">
+                            <input type="text" class="subscribe-form-text" placeholder="ایمیل">
+                            <button type="button">عضویت</button>
+                            <section class="clear-fix"></section>
+                        </form>
+                    </section>
+                </aside><!--end of sidebar-->
+                <section class="clear-fix"></section>
+            </section><!--end of container-->
+        </section><!--end of content-->
+    </section><!--end of first app section-->
+
+    <footer class="footer">
+        <section class="app bg-map">
+            <section class="footer-row">
+                <section class="footer-col">
+                    <img class="footer-logo" src="/Content/images/logo-white.png" alt="">
+                    <section class="clear-fix"></section>
+                    <p class="footer-p">
+                        اخرین اخبار را با ما دنبال کنید 
+                    </p>
+                    <p class="Copyright">
+                        Copyright 2021 All rights reserved 
+                    </p>
+                </section>
+                <section class="clear-fix"></section>
+            </section>
+            <section class="footer-line"></section>
+            <section class="footer-row">
+                <ul class="footer-menu">
+                    <li><a href="">شرایط و ضوابط</a></li>
+                    <li><a href="">حفظ حریم خصوصی</a></li>
+                    <li><a href="">تبلیغات مشاغل</a></li>
+                    <li><a href="">تماس با ما</a></li>
+                </ul>
+                <ul class="footer-social-network">
+                    <li><a href=""><i class="fab fa-facebook"></i></a></li>
+                    <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                    <li><a href=""><i class="fab fa-google-plus-g"></i></a></li>
+                    <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                    <li><a href=""><i class="fab fa-bitcoin"></i></a></li>
+                </ul>
+                <section class="clear-fix"></section>
+            </section>
+        </section><!--end of second app section-->
+        <section class="clear-fix"></section>
+    </footer><!--end of footer-->
+
+    <script type="text/javascript">
+        function showMenu() {
+            var x = document.getElementById("menu");
+            if (x.className === "header-menu") {
+                x.className += " show";
+                console.log(1);
+            } else {
+                x.className = "header-menu";
+                console.log(0);
+            }
+        }
+    </script>
+    @RenderSection("Scripts", false)
+</body>
+</html>
